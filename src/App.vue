@@ -68,7 +68,7 @@ onBeforeUnmount(() => {
   <Hero />
   <Features />
   <Preview />
-  <Updates />
+<!--  <Updates />-->
   <TesterBuilds @toast="showToast" />
   <SiteFooter />
 

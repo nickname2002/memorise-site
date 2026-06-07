@@ -7,12 +7,12 @@ import { LANDING_DATA } from '../data.js'
 
 const emit = defineEmits(['toast'])
 
-const mode = ref('code')
+// const mode = ref('code') // REQUEST ACCESS: temporarily removed (used by tab switcher)
 const code = ref('')
-const email = ref('')
+// const email = ref('')        // REQUEST ACCESS: temporarily removed
 const err = ref('')
 const unlocked = ref(false)
-const requested = ref(false)
+// const requested = ref(false) // REQUEST ACCESS: temporarily removed
 
 const rel = computed(() => LANDING_DATA.release)
 
@@ -22,14 +22,15 @@ function submitCode() {
   else { err.value = 'That code isn\'t valid. Check your invite email.' }
 }
 
-function submitRequest() {
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim())) { err.value = 'Enter a valid email address.'; return }
-  requested.value = true; err.value = ''; emit('toast', 'Request received — we\'ll be in touch')
-}
+// REQUEST ACCESS: temporarily removed
+// function submitRequest() {
+//   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim())) { err.value = 'Enter a valid email address.'; return }
+//   requested.value = true; err.value = ''; emit('toast', 'Request received — we\'ll be in touch')
+// }
 
-function setMode(m) { mode.value = m; err.value = '' }
+// function setMode(m) { mode.value = m; err.value = '' } // REQUEST ACCESS: temporarily removed (used by tab switcher)
 function relock() { unlocked.value = false; code.value = '' }
-function backToCode() { requested.value = false; mode.value = 'code'; email.value = '' }
+// function backToCode() { requested.value = false; mode.value = 'code'; email.value = '' } // REQUEST ACCESS: temporarily removed
 </script>
 
 <template>
@@ -40,7 +41,7 @@ function backToCode() { requested.value = false; mode.value = 'code'; email.valu
         <div class="builds__head reveal">
           <p class="eyebrow eyebrow--night">For testers</p>
           <h2 class="section-title">Get the latest build</h2>
-          <p class="section-lead">Memorise is in private <span style="color:var(--star-soft)">beta</span>. Builds are shared with invited testers — drop in your access code, or request an invite.</p>
+          <p class="section-lead">Memorise is in private <span style="color:var(--star-soft)">beta</span>. Builds are shared with invited testers — drop in your access code to get started.</p><!-- REQUEST ACCESS: "or request an invite" temporarily removed -->
         </div>
 
         <!-- Unlocked release card -->
@@ -101,6 +102,7 @@ function backToCode() { requested.value = false; mode.value = 'code'; email.valu
         <div v-else class="gate reveal">
           <div class="gate__lock"><SvgIcon name="i-shield" /></div>
 
+          <!-- REQUEST ACCESS: success state temporarily removed
           <div v-if="requested" class="gate__success">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <polyline points="20 6 9 17 4 12"></polyline>
@@ -109,37 +111,41 @@ function backToCode() { requested.value = false; mode.value = 'code'; email.valu
             <p class="gate__sub">We'll email <b style="color:var(--star-pale)">{{ email }}</b> an access code as testing spots open up.</p>
             <button class="gate__btn" style="max-width:200px;margin:var(--space-2) auto 0" @click="backToCode">Enter a code instead</button>
           </div>
+          -->
 
-          <template v-else>
-            <h3 class="gate__title">Tester access</h3>
-            <p class="gate__sub">Builds are gated while Memorise is in beta.</p>
-            <div class="gate__seg">
-              <button :class="{ on: mode === 'code' }" @click="setMode('code')">Have a code</button>
-              <button :class="{ on: mode === 'request' }" @click="setMode('request')">Request access</button>
+          <h3 class="gate__title">Tester access</h3>
+          <p class="gate__sub">Builds are gated while Memorise is in beta.</p>
+
+          <!-- REQUEST ACCESS: tab switcher temporarily removed
+          <div class="gate__seg">
+            <button :class="{ on: mode === 'code' }" @click="setMode('code')">Have a code</button>
+            <button :class="{ on: mode === 'request' }" @click="setMode('request')">Request access</button>
+          </div>
+          -->
+
+          <form @submit.prevent="submitCode">
+            <div class="gate__field">
+              <label class="gate__label" for="code">Access code</label>
+              <input id="code" class="gate__input gate__input--code" v-model="code" maxlength="20"
+                     placeholder="· · · · · · · ·" autocomplete="off" />
             </div>
+            <p class="gate__err">{{ err }}</p>
+            <button class="gate__btn" type="submit" :disabled="!code.trim()">Unlock builds</button>
+            <p class="gate__hint">Demo code: <code>MEM-2026-BETA-7X4K</code></p>
+          </form>
 
-            <form v-if="mode === 'code'" @submit.prevent="submitCode">
-              <div class="gate__field">
-                <label class="gate__label" for="code">Access code</label>
-                <input id="code" class="gate__input gate__input--code" v-model="code" maxlength="16"
-                       placeholder="· · · · · · · ·" autocomplete="off" />
-              </div>
-              <p class="gate__err">{{ err }}</p>
-              <button class="gate__btn" type="submit" :disabled="!code.trim()">Unlock builds</button>
-              <p class="gate__hint">Demo code: <code>STARLIGHT</code></p>
-            </form>
-
-            <form v-else @submit.prevent="submitRequest">
-              <div class="gate__field">
-                <label class="gate__label" for="email">Email address</label>
-                <input id="email" class="gate__input" type="email" v-model="email"
-                       placeholder="you@example.com" autocomplete="email" />
-              </div>
-              <p class="gate__err">{{ err }}</p>
-              <button class="gate__btn" type="submit" :disabled="!email.trim()">Request an invite</button>
-              <p class="gate__hint">No spam — just a code when a spot opens up.</p>
-            </form>
-          </template>
+          <!-- REQUEST ACCESS: request form temporarily removed
+          <form v-else @submit.prevent="submitRequest">
+            <div class="gate__field">
+              <label class="gate__label" for="email">Email address</label>
+              <input id="email" class="gate__input" type="email" v-model="email"
+                     placeholder="you@example.com" autocomplete="email" />
+            </div>
+            <p class="gate__err">{{ err }}</p>
+            <button class="gate__btn" type="submit" :disabled="!email.trim()">Request an invite</button>
+            <p class="gate__hint">No spam — just a code when a spot opens up.</p>
+          </form>
+          -->
         </div>
       </div>
     </div>

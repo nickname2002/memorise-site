@@ -90,5 +90,5 @@ export const LANDING_DATA = {
     },
   ],
 
-  codes: ["STARLIGHT", "MEMORISE"],
+  codes: ["MEM-2026-BETA-7X4K"],
 };
