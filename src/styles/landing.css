@@ -362,6 +362,7 @@ img { display: block; max-width: 100%; }
   transition: background-color .15s ease;
 }
 .dlcard__btn:hover { background: rgb(30 144 255 / .2); border-color: rgb(126 200 255 / .4); }
+.dlcard__btn:disabled { opacity: .35; cursor: not-allowed; pointer-events: none; }
 .dlcard__btn svg { width: 15px; height: 15px; }
 .dlcard__size { font-size: var(--text-2xs); color: var(--ink-on-night-faint); }
 .release__notes { padding: 24px 30px; }

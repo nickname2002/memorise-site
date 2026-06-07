@@ -10,7 +10,6 @@ import Starfield from './Starfield.vue'
       <div class="hero__badge">
         <span class="dot"></span>
         <span>Now in private beta</span>
-        <span class="tag">v0.8.0</span>
       </div>
       <h1 class="hero__title">A second brain<br />you <span class="accent">actually own</span>.</h1>
       <p class="hero__sub">Memorise is a local-first note-taking app. Your notes live in a plain-text vault on your machine — organised into folders and tags, and nowhere else.</p>

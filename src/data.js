@@ -1,6 +1,5 @@
 export const LANDING_DATA = {
   tagline: "A second brain you actually own.",
-  version: "0.8.0",
   channel: "beta",
 
   features: [
@@ -38,9 +37,9 @@ export const LANDING_DATA = {
     channel: "beta",
     date: "June 5, 2026",
     downloads: [
-      { os: "macOS", icon: "apple", note: "Universal · 12+", file: "Memorise_0.8.0_universal.dmg", size: "14.2 MB" },
-      { os: "Windows", icon: "windows", note: "x64 · Win 10+", file: "Memorise_0.8.0_x64-setup.exe", size: "11.8 MB" },
-      { os: "Linux", icon: "linux", note: "AppImage · x86_64", file: "Memorise_0.8.0_amd64.AppImage", size: "96.4 MB" },
+      { os: "macOS", icon: "apple", note: "Universal · 12+" },
+      { os: "Windows", icon: "windows", note: "x64 · Win 10+" },
+      { os: "Linux", icon: "linux", note: "AppImage · x86_64" },
     ],
     notes: [
       { tag: "new", text: "Filter the notes list by tag straight from the sidebar." },
