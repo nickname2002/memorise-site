@@ -1,4 +1,6 @@
 <script setup>
+import { asset } from '../../../lib/asset.js'
+
 defineProps({ solid: { type: Boolean, default: false } })
 </script>
 
@@ -6,7 +8,7 @@ defineProps({ solid: { type: Boolean, default: false } })
   <nav class="nav" :class="solid ? 'nav--solid' : 'nav--night'">
     <div class="wrap nav__inner">
       <a class="nav__brand" href="#top">
-        <img class="nav__icon" src="/assets/memorise-icon.png" alt="" />
+        <img class="nav__icon" :src="asset('/assets/memorise-icon.png')" alt="" />
         <span class="nav__name">Memorise</span>
       </a>
       <div class="nav__links">

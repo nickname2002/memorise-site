@@ -1,3 +1,5 @@
+import { asset } from './lib/asset.js'
+
 export const LANDING_DATA = {
   tagline: "A second brain you actually own.",
   channel: "beta",
@@ -30,6 +32,20 @@ export const LANDING_DATA = {
       desc: "Pick your font, your theme, your accent colour. Memorise adapts to your taste, not the other way around.",
     },
   ],
+
+  themes: {
+    eyebrow: "Make it yours",
+    title: "Pick your palette.",
+    lead: "Switch fonts, themes, and accent colours straight from Settings. Memorise looks the way you want it to — light or dark, sans or serif.",
+    images: [
+      asset("/assets/themes/theme-01-midnight-blue.png"),
+      asset("/assets/themes/theme-02-midnight-blue.png"),
+      asset("/assets/themes/theme-03-lavender-light.png"),
+      asset("/assets/themes/theme-04-paper-light.png"),
+      asset("/assets/themes/theme-05-violet-dark.png"),
+      asset("/assets/themes/theme-06-indigo-dark.png"),
+    ],
+  },
 
   previewCards: [
     { k: "Three columns", t: "Folders, notes, and the editor — collapse whatever you're not using." },

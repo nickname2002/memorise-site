@@ -1,6 +1,7 @@
 <script setup>
 import Starfield from '../shared/Starfield.vue'
 import Pill from '../../ui/Pill.vue'
+import { asset } from '../../../lib/asset.js'
 </script>
 
 <template>
@@ -18,7 +19,7 @@ import Pill from '../../ui/Pill.vue'
     <div class="hero__shot-wrap" id="preview">
       <img
         class="hero__shot"
-        src="/assets/app-screenshot.png"
+        :src="asset('/assets/app-screenshot.png')"
         alt="The Memorise desktop app: a three-column layout with folders and tags, a notes list, and the editor."
       />
     </div>

@@ -9,7 +9,7 @@ import { LANDING_DATA } from '../../../data.js'
       <div class="reveal">
         <p class="eyebrow">Why Memorise</p>
         <h2 class="section-title">Simple by design.</h2>
-        <p class="section-lead">Most note-taking apps pile on features nobody asked for — and now an AI chatbot too. Memorise does the opposite: a fast, focused place to write and organise your thoughts, with nothing bolted on.</p>
+        <p class="section-lead">Most note-taking apps pile on features nobody asked for. Memorise does the opposite: a fast, focused place to write and organise your thoughts, with nothing bolted on.</p>
       </div>
       <div class="features__grid reveal">
         <FeatureCard

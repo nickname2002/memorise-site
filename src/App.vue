@@ -3,6 +3,7 @@ import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import SiteNav from './components/sections/SiteNav/SiteNav.vue'
 import Hero from './components/sections/Hero/Hero.vue'
 import Features from './components/sections/Features/Features.vue'
+import Themes from './components/sections/Themes/Themes.vue'
 import Preview from './components/sections/Preview/Preview.vue'
 import Updates from './components/sections/Updates/Updates.vue'
 import TesterBuilds from './components/sections/TesterBuilds/TesterBuilds.vue'
@@ -58,6 +59,7 @@ onBeforeUnmount(() => {
   <SiteNav :solid="solid" />
   <Hero />
   <Features />
+  <Themes />
   <Preview />
 <!--  <Updates />-->
   <TesterBuilds @toast="showToast" />
