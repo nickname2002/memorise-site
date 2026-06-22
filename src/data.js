@@ -1,3 +1,5 @@
+import { asset } from './lib/asset.js'
+
 export const LANDING_DATA = {
   tagline: "A second brain you actually own.",
   channel: "beta",
@@ -24,12 +26,31 @@ export const LANDING_DATA = {
       desc: "⌘K opens search, ⌘, opens settings, and the panels collapse on a keypress. Your hands never have to leave the keys.",
       kbd: ["⌘K", "⌘,"],
     },
+    {
+      icon: "i-brush",
+      title: "Make it yours",
+      desc: "Pick your font, your theme, your accent colour. Memorise adapts to your taste, not the other way around.",
+    },
   ],
+
+  themes: {
+    eyebrow: "Make it yours",
+    title: "Pick your palette.",
+    lead: "Switch fonts, themes, and accent colours straight from Settings. Memorise looks the way you want it to — light or dark, sans or serif.",
+    images: [
+      asset("/assets/themes/theme-01-midnight-blue.png"),
+      asset("/assets/themes/theme-02-midnight-blue.png"),
+      asset("/assets/themes/theme-03-lavender-light.png"),
+      asset("/assets/themes/theme-04-paper-light.png"),
+      asset("/assets/themes/theme-05-violet-dark.png"),
+      asset("/assets/themes/theme-06-indigo-dark.png"),
+    ],
+  },
 
   previewCards: [
     { k: "Three columns", t: "Folders, notes, and the editor — collapse whatever you're not using." },
     { k: "⌘K to anywhere", t: "Full-text search jumps you to any note in a couple of keystrokes." },
-    { k: "Works offline", t: "On a plane, in a tunnel, or ten years from now. The vault is just yours." },
+    { k: "Works offline", t: "On a plane, in a tunnel, or ten years from now. Your offline vault is yours." },
   ],
 
   release: {
@@ -38,8 +59,8 @@ export const LANDING_DATA = {
     date: "June 5, 2026",
     downloads: [
       { os: "macOS", icon: "apple", note: "Universal · 12+", file: "Memorise_0.1.0_aarch64.dmg", size: "dmg", url: "https://github.com/nickname2002/memorise-site/releases/download/1.0b.1/Memorise_0.1.0_aarch64.dmg" },
-      { os: "Windows", icon: "windows", note: "x64 · Win 10+", file: "Memorise_0.1.0_x64.msi", size: "msi" },
-      { os: "Linux", icon: "linux", note: "AppImage · x86_64", file: "Memorise_0.1.0_x86_64.AppImage", size: "AppImage" },
+      { os: "Windows", icon: "windows", note: "x64 · Win 10+", file: "Memorise_0.1.0_x64.msi", size: "msi", comingSoon: true },
+      { os: "Linux", icon: "linux", note: "AppImage · x86_64", file: "Memorise_0.1.0_x86_64.AppImage", size: "AppImage", comingSoon: true },
     ],
     notes: [
       { tag: "new", text: "Filter the notes list by tag straight from the sidebar." },

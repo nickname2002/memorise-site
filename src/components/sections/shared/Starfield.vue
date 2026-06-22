@@ -89,5 +89,14 @@ onBeforeUnmount(() => { if (cleanup) cleanup() })
 </script>
 
 <template>
-  <canvas ref="cv" class="hero__stars"></canvas>
+  <canvas ref="cv" class="starfield"></canvas>
 </template>
+
+<style scoped>
+.starfield {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+</style>
