@@ -44,3 +44,93 @@ const rel = computed(() => LANDING_DATA.release)
     </div>
   </section>
 </template>
+
+<style scoped>
+.builds {
+  background: var(--night-900);
+  color: var(--ink-on-night);
+  position: relative;
+  overflow: hidden;
+}
+
+.builds__inner {
+  position: relative;
+  z-index: 2;
+}
+
+.builds__head {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 48px;
+}
+
+.builds__head .section-title {
+  color: var(--ink-on-night);
+}
+
+.builds__head .section-lead {
+  color: var(--ink-on-night-dim);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.release {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.release__card {
+  background: rgb(255 255 255 / .04);
+  border: 1px solid rgb(126 200 255 / .18);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.release__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 26px 30px;
+  border-bottom: 1px solid rgb(126 200 255 / .14);
+  flex-wrap: wrap;
+}
+
+.release__verline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.release__ver {
+  font-size: 1.5rem;
+  font-weight: var(--fw-bold);
+  color: var(--ink-on-night);
+  letter-spacing: -0.02em;
+}
+
+.release__chip {
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  background: rgb(52 210 123 / .16);
+  color: #5fe6a0;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgb(52 210 123 / .25);
+}
+
+.release__dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgb(126 200 255 / .14);
+}
+
+@media (max-width: 900px) {
+  .release__dl {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

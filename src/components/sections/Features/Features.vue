@@ -24,3 +24,31 @@ import { LANDING_DATA } from '../../../data.js'
     </div>
   </section>
 </template>
+
+<style scoped>
+.features {
+  padding-top: 184px;
+  background: var(--color-white);
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 56px;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+@media (max-width: 720px) {
+  .features {
+    padding-top: 150px;
+  }
+
+  .features__grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

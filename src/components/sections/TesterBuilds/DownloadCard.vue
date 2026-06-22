@@ -33,3 +33,84 @@ defineEmits(['toast'])
     </button>
   </div>
 </template>
+
+<style scoped>
+.dlcard {
+  background: var(--night-900);
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.dlcard__os {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dlcard__os :deep(svg) {
+  width: 22px;
+  height: 22px;
+  color: var(--star-pale);
+}
+
+.dlcard__osname {
+  font-size: var(--text-base);
+  font-weight: var(--fw-semibold);
+  color: var(--ink-on-night);
+}
+
+.dlcard__file {
+  font-size: var(--text-xs);
+  color: var(--ink-on-night-faint);
+  font-family: var(--font-mono);
+}
+
+.dlcard__btn {
+  width: 100%;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  background: rgb(255 255 255 / .07);
+  border: 1px solid rgb(255 255 255 / .14);
+  color: var(--ink-on-night);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  transition: background-color .15s ease;
+}
+
+.dlcard__btn:hover {
+  background: rgb(30 144 255 / .2);
+  border-color: rgb(126 200 255 / .4);
+}
+
+.dlcard__btn:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.dlcard__btn :deep(svg) {
+  width: 15px;
+  height: 15px;
+}
+
+.dlcard__btn--soon {
+  opacity: 1;
+  background: rgb(255 255 255 / .04);
+  border: 1px dashed rgb(255 255 255 / .18);
+  color: var(--ink-on-night-faint);
+}
+
+.dlcard__size {
+  font-size: var(--text-2xs);
+  color: var(--ink-on-night-faint);
+}
+</style>

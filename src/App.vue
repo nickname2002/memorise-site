@@ -68,3 +68,37 @@ onBeforeUnmount(() => {
     <span>{{ toast }}</span>
   </div>
 </template>
+
+<style scoped>
+.toast {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--color-gray-900);
+  color: #fff;
+  padding: 11px 18px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  box-shadow: 0 10px 30px rgb(0 0 0 / .3);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+  z-index: 200;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast :deep(svg) {
+  width: 16px;
+  height: 16px;
+  color: #5fe6a0;
+}
+</style>

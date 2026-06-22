@@ -17,3 +17,35 @@ import { LANDING_DATA } from '../../../data.js'
     </div>
   </section>
 </template>
+
+<style scoped>
+.preview {
+  background: var(--color-notes-list);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.preview__head {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.preview__lead {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.preview__strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+
+@media (max-width: 900px) {
+  .preview__strip {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

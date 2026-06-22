@@ -1,0 +1,21 @@
+/* shared button modifiers layered on top of .mui-btn (ui-kit.css), used by SiteNav and Hero */
+
+.btn-xl {
+  padding: 13px 26px !important;
+  font-size: 15px !important;
+  border-radius: 8px !important;
+}
+
+.btn-onnight {
+  background: rgb(255 255 255 / .08) !important;
+  color: var(--ink-on-night) !important;
+  border: 1px solid rgb(255 255 255 / .16) !important;
+}
+
+.btn-onnight:hover {
+  background: rgb(255 255 255 / .14) !important;
+}
+
+.btn-glow {
+  box-shadow: 0 8px 30px rgb(30 144 255 / .4), 0 0 0 1px rgb(126 200 255 / .3) inset;
+}
