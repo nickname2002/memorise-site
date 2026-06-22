@@ -1,7 +1,7 @@
 import { asset } from './lib/asset.js'
 
 export const LANDING_DATA = {
-  tagline: "A second brain you actually own.",
+  tagline: "Your very own universe of knowledge.",
   channel: "beta",
 
   features: [
