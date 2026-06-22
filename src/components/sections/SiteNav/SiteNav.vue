@@ -11,7 +11,6 @@ defineProps({ solid: { type: Boolean, default: false } })
       </a>
       <div class="nav__links">
         <a class="nav__link" href="#features">Features</a>
-        <a class="nav__link" href="#updates">Updates</a>
         <a class="nav__link" href="#testers">For testers</a>
       </div>
       <div class="nav__spacer"></div>

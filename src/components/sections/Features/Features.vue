@@ -1,0 +1,26 @@
+<script setup>
+import FeatureCard from './FeatureCard.vue'
+import { LANDING_DATA } from '../../../data.js'
+</script>
+
+<template>
+  <section class="section features" id="features">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">Why Memorise</p>
+        <h2 class="section-title">Simple by design.</h2>
+        <p class="section-lead">Most note-taking apps pile on features nobody asked for — and now an AI chatbot too. Memorise does the opposite: a fast, focused place to write and organise your thoughts, with nothing bolted on.</p>
+      </div>
+      <div class="features__grid reveal">
+        <FeatureCard
+          v-for="(f, i) in LANDING_DATA.features"
+          :key="i"
+          :icon="f.icon"
+          :title="f.title"
+          :desc="f.desc"
+          :kbd="f.kbd"
+        />
+      </div>
+    </div>
+  </section>
+</template>

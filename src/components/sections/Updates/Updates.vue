@@ -1,5 +1,5 @@
 <script setup>
-import { LANDING_DATA } from '../data.js'
+import { LANDING_DATA } from '../../../data.js'
 </script>
 
 <template>
