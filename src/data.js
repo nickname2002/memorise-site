@@ -58,7 +58,7 @@ export const LANDING_DATA = {
     channel: "beta",
     date: "June 5, 2026",
     downloads: [
-      { os: "macOS", icon: "apple", note: "Universal · 12+", file: "Memorise_0.1.0_aarch64.dmg", size: "dmg", url: "https://github.com/nickname2002/memorise-site/releases/download/1.0b.1/Memorise_0.1.0_aarch64.dmg" },
+      { os: "macOS", icon: "apple", note: "Universal · 12+", file: "Memorise_1.0b.1_aarch64.dmg", size: "dmg", url: "https://github.com/nickname2002/memorise-site/releases/download/1.0b.1/Memorise_1.0b.1_aarch64.dmg" },
       { os: "Windows", icon: "windows", note: "x64 · Win 10+", file: "Memorise_0.1.0_x64.msi", size: "msi", comingSoon: true },
       { os: "Linux", icon: "linux", note: "AppImage · x86_64", file: "Memorise_0.1.0_x86_64.AppImage", size: "AppImage", comingSoon: true },
     ],
