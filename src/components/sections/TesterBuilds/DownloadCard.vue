@@ -19,7 +19,15 @@ defineEmits(['toast'])
     </div>
     <div class="dlcard__file">{{ download.file }}</div>
     <a
-      v-if="download.url"
+      v-if="download.url && download.os === 'macOS'"
+      class="dlcard__btn"
+      href="./macos-install.html"
+    >
+      <IconDownload />
+      Download <span style="opacity:.6">· {{ download.size }}</span>
+    </a>
+    <a
+      v-else-if="download.url"
       class="dlcard__btn"
       :href="download.url"
       :download="download.file"
