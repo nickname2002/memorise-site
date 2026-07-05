@@ -2,9 +2,9 @@
 import SiteNav from './components/sections/SiteNav/SiteNav.vue'
 import SiteFooter from './components/sections/SiteFooter/SiteFooter.vue'
 import IconSprite from './components/icons/IconSprite.vue'
-import { LANDING_DATA } from './data.js'
+import { useLatestMacos } from './lib/useLatestRelease.js'
 
-const macos = LANDING_DATA.release.downloads.find(d => d.os === 'macOS')
+const macos = useLatestMacos()
 </script>
 
 <template>

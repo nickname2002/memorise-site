@@ -3,10 +3,22 @@ import { computed } from 'vue'
 import Starfield from '../shared/Starfield.vue'
 import DownloadCard from './DownloadCard.vue'
 import { LANDING_DATA } from '../../../data.js'
+import { useLatestMacos } from '../../../lib/useLatestRelease.js'
 
 const emit = defineEmits(['toast'])
 
-const rel = computed(() => LANDING_DATA.release)
+const macos = useLatestMacos()
+
+const rel = computed(() => {
+  const release = LANDING_DATA.release
+  if (!macos.value) return release
+  return {
+    ...release,
+    downloads: release.downloads.map(d =>
+      d.os === 'macOS' ? { ...d, ...macos.value } : d
+    ),
+  }
+})
 </script>
 
 <template>
