@@ -7,7 +7,7 @@ import { asset } from '@/libs/utils/asset.js'
     <div class="wrap">
       <div class="footer__top">
         <div class="footer__brand">
-          <a class="nav__brand" href="#top">
+          <a class="nav__brand" href="./#top">
             <img class="nav__icon" :src="asset('/assets/memorise-icon.png')" alt="" />
             <span class="nav__name" style="color:var(--ink-on-night)">Memorise</span>
           </a>
