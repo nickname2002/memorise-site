@@ -1,12 +1,17 @@
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import SiteNav from './SiteNav.vue'
 
-export default {
+const meta: Meta<typeof SiteNav> = {
   title: 'UI/SiteNav',
   component: SiteNav,
   parameters: { layout: 'fullscreen' },
 }
 
-export const OnNight = {
+export default meta
+
+type Story = StoryObj<typeof SiteNav>
+
+export const OnNight: Story = {
   args: { solid: false },
   render: (args) => ({
     components: { SiteNav },
@@ -15,7 +20,7 @@ export const OnNight = {
   }),
 }
 
-export const Solid = {
+export const Solid: Story = {
   args: { solid: true },
   render: (args) => ({
     components: { SiteNav },

@@ -1,0 +1,12 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["vite/client", "node"],
+    "noEmit": true
+  },
+  "include": ["src/**/*", "src/**/*.vue", ".storybook/**/*", "vite.config.ts"],
+  "exclude": ["node_modules", "dist"]
+}

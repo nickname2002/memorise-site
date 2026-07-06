@@ -1,8 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import SiteNav from '@/libs/ui/SiteNav/SiteNav.vue'
 import SiteFooter from '@/libs/ui/SiteFooter/SiteFooter.vue'
 import IconSprite from '@/libs/ui/icons/IconSprite.vue'
-import { useLatestMacos } from '@/libs/composables/useLatestRelease/useLatestRelease.js'
+import { useLatestMacos } from '@/libs/useLatestRelease'
 
 const macos = useLatestMacos()
 </script>

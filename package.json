@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "typecheck": "bun scripts/vue-tsc-bun.cjs --noEmit",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -15,10 +16,14 @@
   },
   "devDependencies": {
     "@storybook/vue3-vite": "^10.4.6",
+    "@types/node": "^26.1.0",
     "@vitejs/plugin-vue": "^6.0.6",
+    "@vue/tsconfig": "^0.9.1",
     "storybook": "^10.4.6",
+    "typescript": "^6.0.3",
     "vite": "^8.0.8",
-    "vite-plugin-vue-devtools": "^8.1.1"
+    "vite-plugin-vue-devtools": "^8.1.1",
+    "vue-tsc": "^3.3.6"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"

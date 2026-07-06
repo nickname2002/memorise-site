@@ -1,3 +1,4 @@
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import SvgIcon from './SvgIcon.vue'
 import IconSprite from './IconSprite.vue'
 
@@ -15,7 +16,7 @@ const ICON_NAMES = [
   'i-check',
 ]
 
-export default {
+const meta: Meta<typeof SvgIcon> = {
   title: 'UI/Icons/SvgIcon',
   component: SvgIcon,
   decorators: [
@@ -26,7 +27,11 @@ export default {
   ],
 }
 
-export const Single = {
+export default meta
+
+type Story = StoryObj<typeof SvgIcon>
+
+export const Single: Story = {
   args: { name: 'i-check' },
   render: (args) => ({
     components: { SvgIcon },
@@ -35,7 +40,7 @@ export const Single = {
   }),
 }
 
-export const AllIcons = {
+export const AllIcons: Story = {
   render: () => ({
     components: { SvgIcon },
     setup: () => ({ names: ICON_NAMES }),

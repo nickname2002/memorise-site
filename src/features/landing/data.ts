@@ -1,6 +1,56 @@
-import { asset } from '@/libs/utils/asset.js'
+import { asset } from '@/libs/asset'
 
-export const LANDING_DATA = {
+export type Feature = {
+  icon: string
+  title: string
+  desc: string
+  kbd?: string[]
+}
+
+export type DownloadTarget = {
+  os: string
+  icon: string
+  note: string
+  file: string
+  size: string
+  url?: string
+  comingSoon?: boolean
+}
+
+export type NoteTag = 'new' | 'imp' | 'fix'
+
+export type ReleaseNote = {
+  tag: NoteTag
+  text: string
+}
+
+export type ChangelogEntry = {
+  version: string
+  channel: string
+  date: string
+  title: string
+  items: ReleaseNote[]
+}
+
+export type LandingData = {
+  tagline: string
+  channel: string
+  features: Feature[]
+  themes: { eyebrow: string; title: string; lead: string; images: string[] }
+  previewCards: Array<{ k: string; t: string }>
+  release: {
+    version: string
+    channel: string
+    date: string
+    downloads: DownloadTarget[]
+    notes: ReleaseNote[]
+    sha: string
+  }
+  changelog: ChangelogEntry[]
+  codes: string[]
+}
+
+export const LANDING_DATA: LandingData = {
   tagline: "Your very own universe of knowledge.",
   channel: "beta",
 

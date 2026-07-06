@@ -1,13 +1,12 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-const props = defineProps({
-  images: { type: Array, required: true },
-  interval: { type: Number, default: 2200 },
+const props = withDefaults(defineProps<{ images: string[]; interval?: number }>(), {
+  interval: 2200,
 })
 
 const active = ref(0)
-let timer = null
+let timer: ReturnType<typeof setInterval> | null = null
 
 onMounted(() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches

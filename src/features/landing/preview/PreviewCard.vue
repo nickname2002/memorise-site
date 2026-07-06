@@ -1,8 +1,5 @@
-<script setup>
-defineProps({
-  k: { type: String, required: true },
-  t: { type: String, required: true },
-})
+<script setup lang="ts">
+defineProps<{ k: string; t: string }>()
 </script>
 
 <template>

@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import FeatureCard from './FeatureCard.vue'
-import { LANDING_DATA } from '@/features/landing/data.js'
+import { LANDING_DATA } from '@/features/landing/data'
 </script>
 
 <template>

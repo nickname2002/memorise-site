@@ -1,7 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import Starfield from '@/libs/ui/Starfield/Starfield.vue'
 import Pill from '@/libs/ui/Pill/Pill.vue'
-import { asset } from '@/libs/utils/asset.js'
+import { asset } from '@/libs/asset'
 </script>
 
 <template>

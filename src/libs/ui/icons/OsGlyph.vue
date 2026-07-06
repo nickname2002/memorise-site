@@ -1,5 +1,5 @@
-<script setup>
-defineProps({ os: { type: String, required: true } })
+<script setup lang="ts">
+defineProps<{ os: string }>()
 </script>
 
 <template>

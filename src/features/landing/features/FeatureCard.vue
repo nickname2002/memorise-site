@@ -1,12 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import SvgIcon from '@/libs/ui/icons/SvgIcon.vue'
 
-defineProps({
-  icon: { type: String, required: true },
-  title: { type: String, required: true },
-  desc: { type: String, required: true },
-  kbd: { type: Array, default: null },
-})
+defineProps<{ icon: string; title: string; desc: string; kbd?: string[] }>()
 </script>
 
 <template>

@@ -1,11 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import Starfield from '@/libs/ui/Starfield/Starfield.vue'
 import DownloadCard from './DownloadCard.vue'
-import { LANDING_DATA } from '@/features/landing/data.js'
-import { useLatestMacos } from '@/libs/composables/useLatestRelease/useLatestRelease.js'
+import { LANDING_DATA } from '@/features/landing/data'
+import { useLatestMacos } from '@/libs/useLatestRelease'
 
-const emit = defineEmits(['toast'])
+const emit = defineEmits<{ toast: [message: string] }>()
 
 const macos = useLatestMacos()
 

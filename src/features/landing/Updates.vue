@@ -1,5 +1,5 @@
-<script setup>
-import { LANDING_DATA } from '@/features/landing/data.js'
+<script setup lang="ts">
+import { LANDING_DATA } from '@/features/landing/data'
 </script>
 
 <template>

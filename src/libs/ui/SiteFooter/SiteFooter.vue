@@ -1,5 +1,5 @@
-<script setup>
-import { asset } from '@/libs/utils/asset.js'
+<script setup lang="ts">
+import { asset } from '@/libs/asset'
 </script>
 
 <template>

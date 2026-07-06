@@ -1,23 +1,41 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-const props = defineProps({
-  density: { type: Number, default: 1 },
-  constellation: { type: Boolean, default: false },
+type Star = {
+  x: number
+  y: number
+  r: number
+  base: number
+  amp: number
+  sp: number
+  ph: number
+  blue: boolean
+}
+
+const props = withDefaults(defineProps<{ density?: number; constellation?: boolean }>(), {
+  density: 1,
+  constellation: false,
 })
 
-const cv = ref(null)
+const cv = ref<HTMLCanvasElement | null>(null)
 let raf = 0
-let cleanup = null
+let cleanup: (() => void) | null = null
 
 onMounted(() => {
-  const canvas = cv.value
-  if (!canvas) return
-  const ctx = canvas.getContext('2d')
+  const canvasEl = cv.value
+  if (!canvasEl) return
+  const canvas: HTMLCanvasElement = canvasEl
+  const context = canvas.getContext('2d')
+  if (!context) return
+  const ctx: CanvasRenderingContext2D = context
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  let w, h, dpr, stars = [], t = 0
+  let w = 0
+  let h = 0
+  let dpr = 1
+  let stars: Star[] = []
+  let t = 0
 
-  const nodes = [
+  const nodes: Array<[number, number]> = [
     [0.30, 0.30], [0.385, 0.66], [0.50, 0.46], [0.615, 0.66], [0.70, 0.30],
   ]
 

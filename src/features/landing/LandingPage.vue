@@ -1,22 +1,22 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import SiteNav from '@/libs/ui/SiteNav/SiteNav.vue'
-import Hero from './Hero/Hero.vue'
-import Features from './Features/Features.vue'
-import Themes from './Themes/Themes.vue'
-import Preview from './Preview/Preview.vue'
-import Updates from './Updates/Updates.vue'
-import TesterBuilds from './TesterBuilds/TesterBuilds.vue'
+import Hero from './Hero.vue'
+import Features from './features/Features.vue'
+import Themes from './themes/Themes.vue'
+import Preview from './preview/Preview.vue'
+import Updates from './Updates.vue'
+import TesterBuilds from './tester-builds/TesterBuilds.vue'
 import SiteFooter from '@/libs/ui/SiteFooter/SiteFooter.vue'
 import IconSprite from '@/libs/ui/icons/IconSprite.vue'
 import IconCheck from '@/libs/ui/icons/IconCheck.vue'
 
 const solid = ref(false)
 const toast = ref('')
-let toastTimer = null
-let io = null
+let toastTimer: ReturnType<typeof setTimeout> | undefined
+let io: IntersectionObserver | null = null
 
-function showToast(msg) {
+function showToast(msg: string) {
   toast.value = msg
   clearTimeout(toastTimer)
   toastTimer = setTimeout(() => { toast.value = '' }, 2600)
@@ -35,10 +35,11 @@ onMounted(() => {
     if (window.location.hash || !('IntersectionObserver' in window)) {
       els.forEach(e => e.classList.add('is-in'))
     } else {
-      io = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target) } })
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); obs.unobserve(e.target) } })
       }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' })
-      els.forEach(e => io.observe(e))
+      els.forEach(e => observer.observe(e))
+      io = observer
     }
     if (window.location.hash) {
       const el = document.querySelector(window.location.hash)

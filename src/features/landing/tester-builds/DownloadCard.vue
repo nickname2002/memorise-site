@@ -1,11 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import OsGlyph from '@/libs/ui/icons/OsGlyph.vue'
 import IconDownload from '@/libs/ui/icons/IconDownload.vue'
+import type { DownloadTarget } from '@/features/landing/data'
 
-defineProps({
-  download: { type: Object, required: true },
-})
-defineEmits(['toast'])
+defineProps<{ download: DownloadTarget }>()
+defineEmits<{ toast: [message: string] }>()
 </script>
 
 <template>

@@ -1,7 +1,7 @@
-<script setup>
-import { asset } from '@/libs/utils/asset.js'
+<script setup lang="ts">
+import { asset } from '@/libs/asset'
 
-defineProps({ solid: { type: Boolean, default: false } })
+withDefaults(defineProps<{ solid?: boolean }>(), { solid: false })
 </script>
 
 <template>

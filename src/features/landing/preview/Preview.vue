@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import PreviewCard from './PreviewCard.vue'
-import { LANDING_DATA } from '@/features/landing/data.js'
+import { LANDING_DATA } from '@/features/landing/data'
 </script>
 
 <template>
