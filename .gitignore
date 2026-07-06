@@ -40,3 +40,8 @@ __screenshots__/
 
 # Storybook
 storybook-static
+
+# bun is the package manager — bun.lock is the only lockfile
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
