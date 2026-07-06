@@ -4,6 +4,6 @@ import './styles/landing.css'
 import './styles/buttons.css'
 
 import { createApp } from 'vue'
-import MacosInstallApp from './MacosInstallApp.vue'
+import MacosInstallPage from '@/features/macos-install/MacosInstallPage.vue'
 
-createApp(MacosInstallApp).mount('#app')
+createApp(MacosInstallPage).mount('#app')

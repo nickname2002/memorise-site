@@ -4,6 +4,6 @@ import './styles/landing.css'
 import './styles/buttons.css'
 
 import { createApp } from 'vue'
-import App from './App.vue'
+import LandingPage from '@/features/landing/LandingPage.vue'
 
-createApp(App).mount('#app')
+createApp(LandingPage).mount('#app')
