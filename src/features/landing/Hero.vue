@@ -30,19 +30,21 @@ import { asset } from '@/libs/asset'
 <style scoped>
 .hero {
   position: relative;
-  background: radial-gradient(120% 90% at 50% -10%, var(--night-700) 0%, var(--night-850) 42%, var(--night-950) 100%);
+  background:
+    radial-gradient(120% 70% at 18% -10%, var(--night-700) 0%, var(--night-800) 38%, var(--night-950) 78%),
+    radial-gradient(90% 60% at 88% 30%, rgb(242 217 184 / .16) 0%, rgb(242 217 184 / 0) 55%);
   overflow: hidden;
   isolation: isolate;
 }
 
 .hero__glow {
   position: absolute;
-  left: 50%;
-  top: 8%;
-  width: 760px;
-  height: 760px;
+  left: 62%;
+  top: -6%;
+  width: 640px;
+  height: 640px;
   transform: translateX(-50%);
-  background: radial-gradient(circle, rgb(30 144 255 / .22) 0%, rgb(30 144 255 / .06) 38%, transparent 66%);
+  background: radial-gradient(circle, rgb(242 217 184 / .30) 0%, rgb(242 217 184 / .08) 40%, transparent 70%);
   z-index: 0;
   pointer-events: none;
 }
@@ -68,7 +70,7 @@ import { asset } from '@/libs/asset'
 }
 
 .hero__title .accent {
-  background: linear-gradient(180deg, var(--star-pale), var(--star-blue));
+  background: linear-gradient(100deg, var(--dawn-peach) 0%, var(--dawn-blue) 90%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -101,9 +103,9 @@ import { asset } from '@/libs/asset'
 }
 
 .hero__shot {
-  border-radius: 14px;
-  border: 1px solid rgb(255 255 255 / .1);
-  box-shadow: 0 40px 80px -20px rgb(0 0 0 / .6), 0 0 0 1px rgb(0 0 0 / .3);
+  border-radius: 16px;
+  border: 1px solid rgb(255 255 255 / .12);
+  box-shadow: 0 40px 90px -20px rgb(0 0 0 / .65), 0 0 0 1px rgb(0 0 0 / .3);
   width: 100%;
   background: var(--night-800);
 }

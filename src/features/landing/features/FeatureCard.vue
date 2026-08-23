@@ -33,8 +33,8 @@ defineProps<{ icon: string; title: string; desc: string; kbd?: string[] }>()
   width: 42px;
   height: 42px;
   border-radius: var(--radius-lg);
-  background: var(--color-accent-50);
-  color: var(--color-accent);
+  background: linear-gradient(135deg, #eaf1fc, #f6ecdd);
+  color: var(--night-700);
   display: flex;
   align-items: center;
   justify-content: center;

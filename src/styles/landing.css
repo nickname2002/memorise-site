@@ -1,17 +1,22 @@
 :root {
-  --night-950: #05070f;
-  --night-900: #080c18;
-  --night-850: #0a0f1d;
-  --night-800: #0c1326;
-  --night-700: #101a33;
+  --night-950: #060b14;
+  --night-900: #0a1220;
+  --night-850: #0d1b30;
+  --night-800: #0d1b30;
+  --night-700: #123354;
 
-  --star-blue: #1e90ff;
+  --star-blue: #4f8fd6;
   --star-soft: #7ec8ff;
   --star-pale: #cfe6ff;
 
-  --ink-on-night: #eaf1ff;
-  --ink-on-night-dim: #9fb2d4;
-  --ink-on-night-faint: #5d6f93;
+  /* dawn accent — lifted from the logo's gradient */
+  --dawn-peach: #f2d9b8;
+  --dawn-peach-soft: #e8c9a0;
+  --dawn-blue: #4f8fd6;
+
+  --ink-on-night: #eef3fb;
+  --ink-on-night-dim: #a9bcd8;
+  --ink-on-night-faint: #6c81a6;
 
   --maxw: 1120px;
 }

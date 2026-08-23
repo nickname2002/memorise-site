@@ -10,14 +10,15 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 14px;
+  padding: 7px 16px;
   border-radius: var(--radius-full);
-  background: rgb(255 255 255 / .06);
-  border: 1px solid rgb(126 200 255 / .22);
-  color: var(--ink-on-night-dim);
+  background: rgb(255 255 255 / .08);
+  border: 1px solid rgb(255 255 255 / .14);
+  color: var(--dawn-peach);
   font-size: var(--text-xs);
-  font-weight: var(--fw-medium);
-  margin-bottom: 30px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.02em;
+  margin-bottom: 26px;
   backdrop-filter: blur(4px);
 }
 
@@ -25,7 +26,6 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #34d27b;
-  box-shadow: 0 0 8px #34d27b;
+  background: var(--dawn-peach);
 }
 </style>
