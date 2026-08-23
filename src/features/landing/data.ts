@@ -110,7 +110,7 @@ export const LANDING_DATA: LandingData = {
     downloads: [
       { os: "macOS", icon: "apple", note: "macOS 12+", file: "Memorise_latest_aarch64.dmg", size: "dmg", url: "https://memorise-updates.vercel.app/Memorise_latest_aarch64.dmg" },
       { os: "Windows", icon: "windows", note: "x64 · Win 10+", file: "Memorise_0.1.0_x64.msi", size: "msi", comingSoon: true },
-      { os: "Linux", icon: "linux", note: "AppImage · x86_64", file: "Memorise_0.1.0_x86_64.AppImage", size: "AppImage", comingSoon: true },
+      { os: "Linux", icon: "linux", note: "deb · x64 (Ubuntu/Debian)", file: "Memorise_latest_amd64.deb", size: "deb", url: "https://memorise-updates.vercel.app/Memorise_latest_amd64.deb" },
     ],
     notes: [
       { tag: "new", text: "Filter the notes list by tag straight from the sidebar." },
