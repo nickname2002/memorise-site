@@ -1,24 +1,27 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref } from 'vue'
 import Starfield from '@/libs/ui/Starfield/Starfield.vue'
 import DownloadCard from './DownloadCard.vue'
 import { LANDING_DATA } from '@/features/landing/data'
-import { useLatestMacos } from '@/libs/useLatestRelease'
+import { useReleaseDownloads } from '@/libs/useLatestRelease'
+import { useTestPhaseGate } from '@/libs/useTestPhaseGate'
 
 const emit = defineEmits<{ toast: [message: string] }>()
 
-const macos = useLatestMacos()
+const downloads = useReleaseDownloads()
+const rel = LANDING_DATA.release
 
-const rel = computed(() => {
-  const release = LANDING_DATA.release
-  if (!macos.value) return release
-  return {
-    ...release,
-    downloads: release.downloads.map(d =>
-      d.os === 'macOS' ? { ...d, ...macos.value } : d
-    ),
+const { unlocked, unlock } = useTestPhaseGate()
+const passwordInput = ref('')
+const error = ref('')
+
+function submit() {
+  if (unlock(passwordInput.value)) {
+    error.value = ''
+  } else {
+    error.value = 'Incorrect password. Please try again.'
   }
-})
+}
 </script>
 
 <template>
@@ -30,6 +33,7 @@ const rel = computed(() => {
           <p class="eyebrow eyebrow--night">For testers</p>
           <h2 class="section-title">Get the latest build</h2>
           <p class="section-lead">Memorise is in private <span style="color:var(--star-soft)">beta</span>. Grab the latest build below.</p>
+          <p class="section-lead">Testers: read the <a href="./test-phase.html" class="builds__link">test guide &amp; known issues</a>.</p>
         </div>
 
         <div class="release reveal">
@@ -44,12 +48,33 @@ const rel = computed(() => {
             </div>
             <div class="release__dl">
               <DownloadCard
-                v-for="d in rel.downloads"
+                v-for="d in downloads"
                 :key="d.os"
                 :download="d"
                 @toast="emit('toast', $event)"
               />
             </div>
+
+            <template v-if="!unlocked">
+              <div class="release__divider"></div>
+              <div class="release__gate">
+                <h3 class="release__gate-title">Unlock downloads</h3>
+                <p class="release__gate-text">
+                  Memorise is currently in a closed beta. Enter the tester password you were
+                  given to unlock the download links above.
+                </p>
+                <form class="release__gate-form" @submit.prevent="submit">
+                  <input
+                    v-model="passwordInput"
+                    type="password"
+                    placeholder="Tester password"
+                    class="release__gate-input"
+                  />
+                  <button type="submit" class="release__gate-btn">Unlock</button>
+                </form>
+                <p v-if="error" class="release__gate-error">{{ error }}</p>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -84,6 +109,16 @@ const rel = computed(() => {
   color: var(--ink-on-night-dim);
   margin-left: auto;
   margin-right: auto;
+}
+
+.builds__link {
+  color: var(--star-soft);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.builds__link:hover {
+  color: var(--star-pale);
 }
 
 .release {
@@ -144,5 +179,68 @@ const rel = computed(() => {
   .release__dl {
     grid-template-columns: 1fr;
   }
+}
+
+.release__divider {
+  height: 1px;
+  background: rgb(126 200 255 / .14);
+}
+
+.release__gate {
+  padding: 26px 30px;
+}
+
+.release__gate-title {
+  font-size: var(--text-base);
+  font-weight: var(--fw-semibold);
+  color: var(--ink-on-night);
+  margin: 0 0 8px;
+}
+
+.release__gate-text {
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--ink-on-night-faint);
+  margin: 0 0 16px;
+  max-width: 480px;
+}
+
+.release__gate-form {
+  display: flex;
+  gap: 10px;
+  max-width: 380px;
+}
+
+.release__gate-input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: rgb(255 255 255 / .05);
+  border: 1px solid rgb(255 255 255 / .14);
+  color: var(--ink-on-night);
+  font-size: var(--text-sm);
+}
+
+.release__gate-btn {
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  background: rgb(255 255 255 / .07);
+  border: 1px solid rgb(255 255 255 / .14);
+  color: var(--ink-on-night);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition: background-color .15s ease;
+}
+
+.release__gate-btn:hover {
+  background: rgb(30 144 255 / .2);
+  border-color: rgb(126 200 255 / .4);
+}
+
+.release__gate-error {
+  margin: 10px 0 0;
+  font-size: var(--text-sm);
+  color: #ff8a8a;
 }
 </style>

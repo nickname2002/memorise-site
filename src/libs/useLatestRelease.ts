@@ -1,4 +1,5 @@
-import { ref, onMounted, type Ref } from 'vue'
+import { ref, onMounted, computed, type Ref, type ComputedRef } from 'vue'
+import { LANDING_DATA, type DownloadTarget } from '@/features/landing/data'
 
 export type MacosBuild = {
   url: string
@@ -32,4 +33,14 @@ export function useLatestMacos(): Ref<MacosBuild> {
   })
 
   return macos
+}
+
+export function useReleaseDownloads(): ComputedRef<DownloadTarget[]> {
+  const macos = useLatestMacos()
+
+  return computed(() =>
+    LANDING_DATA.release.downloads.map(d =>
+      d.os === 'macOS' ? { ...d, ...macos.value } : d
+    )
+  )
 }

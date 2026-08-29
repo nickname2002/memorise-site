@@ -1,10 +1,24 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import SiteNav from '@/libs/ui/SiteNav/SiteNav.vue'
 import SiteFooter from '@/libs/ui/SiteFooter/SiteFooter.vue'
 import IconSprite from '@/libs/ui/icons/IconSprite.vue'
 import { useLatestMacos } from '@/libs/useLatestRelease'
+import { useTestPhaseGate } from '@/libs/useTestPhaseGate'
 
 const macos = useLatestMacos()
+const { unlocked, unlock } = useTestPhaseGate()
+
+const passwordInput = ref('')
+const error = ref('')
+
+function submit() {
+  if (unlock(passwordInput.value)) {
+    error.value = ''
+  } else {
+    error.value = 'Incorrect password. Please try again.'
+  }
+}
 </script>
 
 <template>
@@ -69,7 +83,7 @@ const macos = useLatestMacos()
       </div>
 
       <a
-        v-if="macos?.url"
+        v-if="macos?.url && unlocked"
         class="install__download"
         :href="macos.url"
         :download="macos.file"
@@ -78,6 +92,27 @@ const macos = useLatestMacos()
         Download Memorise for macOS
         <span style="opacity:.6">· {{ macos.note }}</span>
       </a>
+
+      <template v-else-if="macos?.url">
+        <div class="install__divider"></div>
+        <h2 class="install__gate-title">Unlock downloads</h2>
+        <p class="install__gate-text">
+          Memorise is currently in a closed beta. Enter the tester password you were given to
+          unlock the download below.
+        </p>
+        <form class="install__gate" @submit.prevent="submit">
+          <div class="install__gate-row">
+            <input
+              v-model="passwordInput"
+              type="password"
+              placeholder="Tester password"
+              class="install__gate-input"
+            />
+            <button type="submit" class="install__download">Unlock</button>
+          </div>
+          <p v-if="error" class="install__gate-error">{{ error }}</p>
+        </form>
+      </template>
     </div>
   </main>
 
@@ -183,5 +218,52 @@ const macos = useLatestMacos()
 .install__download:hover {
   background: rgb(30 144 255 / .2);
   border-color: rgb(126 200 255 / .4);
+}
+
+.install__divider {
+  height: 1px;
+  background: rgb(255 255 255 / .1);
+  margin: 8px 0 28px;
+}
+
+.install__gate-title {
+  font-size: var(--text-xl, 1.25rem);
+  font-weight: var(--fw-semibold);
+  color: var(--ink-on-night);
+  margin: 0 0 10px;
+}
+
+.install__gate-text {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--ink-on-night-faint);
+  margin: 0 0 20px;
+}
+
+.install__gate {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.install__gate-row {
+  display: flex;
+  gap: 10px;
+}
+
+.install__gate-input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  background: rgb(255 255 255 / .05);
+  border: 1px solid rgb(255 255 255 / .14);
+  color: var(--ink-on-night);
+  font-size: var(--text-sm);
+}
+
+.install__gate-error {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: #ff8a8a;
 }
 </style>

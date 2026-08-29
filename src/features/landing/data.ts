@@ -58,7 +58,7 @@ export const LANDING_DATA: LandingData = {
     {
       icon: "i-shield",
       title: "Local-first, always yours",
-      desc: "Every note lives in a plain-text vault on your own machine. No account, no cloud, no lock-in — just files you control.",
+      desc: "Every note lives in a plain-text vault on your own machine by default. No account needed, no lock-in — just files you control.",
     },
     {
       icon: "i-folder",
@@ -80,6 +80,11 @@ export const LANDING_DATA: LandingData = {
       icon: "i-brush",
       title: "Make it yours",
       desc: "Pick your font, your theme, your accent colour. Memorise adapts to your taste, not the other way around.",
+    },
+    {
+      icon: "i-lock",
+      title: "End-to-end encrypted by default",
+      desc: "Want to sync across devices? Cloud vaults are end-to-end encrypted automatically — your notes are unreadable to anyone but you, including us.",
     },
   ],
 
