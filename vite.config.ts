@@ -21,6 +21,7 @@ export default defineConfig({
       input: {
         main: fileURLToPath(new URL('./index.html', import.meta.url)),
         macosInstall: fileURLToPath(new URL('./macos-install.html', import.meta.url)),
+        testPhase: fileURLToPath(new URL('./test-phase.html', import.meta.url)),
       },
     },
   },

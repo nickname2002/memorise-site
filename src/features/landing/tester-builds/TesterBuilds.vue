@@ -1,24 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import Starfield from '@/libs/ui/Starfield/Starfield.vue'
 import DownloadCard from './DownloadCard.vue'
 import { LANDING_DATA } from '@/features/landing/data'
-import { useLatestMacos } from '@/libs/useLatestRelease'
+import { useReleaseDownloads } from '@/libs/useLatestRelease'
 
 const emit = defineEmits<{ toast: [message: string] }>()
 
-const macos = useLatestMacos()
-
-const rel = computed(() => {
-  const release = LANDING_DATA.release
-  if (!macos.value) return release
-  return {
-    ...release,
-    downloads: release.downloads.map(d =>
-      d.os === 'macOS' ? { ...d, ...macos.value } : d
-    ),
-  }
-})
+const downloads = useReleaseDownloads()
+const rel = LANDING_DATA.release
 </script>
 
 <template>
@@ -30,6 +19,7 @@ const rel = computed(() => {
           <p class="eyebrow eyebrow--night">For testers</p>
           <h2 class="section-title">Get the latest build</h2>
           <p class="section-lead">Memorise is in private <span style="color:var(--star-soft)">beta</span>. Grab the latest build below.</p>
+          <p class="section-lead">Testers: read the <a href="./test-phase.html" class="builds__link">test guide &amp; known issues</a>.</p>
         </div>
 
         <div class="release reveal">
@@ -44,7 +34,7 @@ const rel = computed(() => {
             </div>
             <div class="release__dl">
               <DownloadCard
-                v-for="d in rel.downloads"
+                v-for="d in downloads"
                 :key="d.os"
                 :download="d"
                 @toast="emit('toast', $event)"
@@ -84,6 +74,16 @@ const rel = computed(() => {
   color: var(--ink-on-night-dim);
   margin-left: auto;
   margin-right: auto;
+}
+
+.builds__link {
+  color: var(--star-soft);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.builds__link:hover {
+  color: var(--star-pale);
 }
 
 .release {
