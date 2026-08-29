@@ -25,6 +25,8 @@ jobs:
 
       - run: bun install --frozen-lockfile
       - run: bun run build
+        env:
+          VITE_TEST_PHASE_PASSWORD: ${{ secrets.VITE_TEST_PHASE_PASSWORD }}
 
       - uses: actions/configure-pages@v5
 

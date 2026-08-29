@@ -1,9 +1,11 @@
-// EDIT ME: shared password for testers, gating every real download button
-// on the site (landing page, macos-install page). This ends up readable in
-// the built JS bundle — it's a casual deterrent for this first test phase,
-// not real access control. Don't hash it or add lockout logic; that would
-// be over-engineering something that's fundamentally client-side.
-export const TEST_PHASE_PASSWORD = 'REPLACE-ME'
+// Shared password for testers, gating every real download button on the
+// site (landing page, macos-install page). Set via VITE_TEST_PHASE_PASSWORD
+// (see .env.example) so it isn't checked into git. It still ends up
+// readable in the built JS bundle — it's a casual deterrent for this first
+// test phase, not real access control. Don't hash it or add lockout logic;
+// that would be over-engineering something that's fundamentally
+// client-side.
+export const TEST_PHASE_PASSWORD = import.meta.env.VITE_TEST_PHASE_PASSWORD ?? ''
 
 export type TestInstruction = {
   title: string
