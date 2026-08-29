@@ -2,9 +2,12 @@
 import OsGlyph from '@/libs/ui/icons/OsGlyph.vue'
 import IconDownload from '@/libs/ui/icons/IconDownload.vue'
 import type { DownloadTarget } from '@/features/landing/data'
+import { useTestPhaseGate } from '@/libs/useTestPhaseGate'
 
 defineProps<{ download: DownloadTarget }>()
 defineEmits<{ toast: [message: string] }>()
+
+const { unlocked } = useTestPhaseGate()
 </script>
 
 <template>
@@ -17,6 +20,7 @@ defineEmits<{ toast: [message: string] }>()
       </div>
     </div>
     <div class="dlcard__file">{{ download.file }}</div>
+
     <a
       v-if="download.url && download.os === 'macOS'"
       class="dlcard__btn"
@@ -25,8 +29,9 @@ defineEmits<{ toast: [message: string] }>()
       <IconDownload />
       Download <span style="opacity:.6">· {{ download.size }}</span>
     </a>
+
     <a
-      v-else-if="download.url"
+      v-else-if="download.url && unlocked"
       class="dlcard__btn"
       :href="download.url"
       :download="download.file"
@@ -35,6 +40,12 @@ defineEmits<{ toast: [message: string] }>()
       <IconDownload />
       Download <span style="opacity:.6">· {{ download.size }}</span>
     </a>
+
+    <button v-else-if="download.url" class="dlcard__btn dlcard__btn--locked" disabled>
+      <svg width="14" height="14"><use href="#i-lock"></use></svg>
+      Locked
+    </button>
+
     <button v-else class="dlcard__btn dlcard__btn--soon" disabled>
       Coming soon
     </button>
@@ -109,7 +120,8 @@ defineEmits<{ toast: [message: string] }>()
   height: 15px;
 }
 
-.dlcard__btn--soon {
+.dlcard__btn--soon,
+.dlcard__btn--locked {
   opacity: 1;
   background: rgb(255 255 255 / .04);
   border: 1px dashed rgb(255 255 255 / .18);

@@ -1,29 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import SiteNav from '@/libs/ui/SiteNav/SiteNav.vue'
 import SiteFooter from '@/libs/ui/SiteFooter/SiteFooter.vue'
 import IconSprite from '@/libs/ui/icons/IconSprite.vue'
-import DownloadCard from '@/features/landing/tester-builds/DownloadCard.vue'
-import { useReleaseDownloads } from '@/libs/useLatestRelease'
-import { TEST_PHASE_DATA, TEST_PHASE_PASSWORD } from '@/features/test-phase/data'
-
-const downloads = useReleaseDownloads()
-
-const STORAGE_KEY = 'memorise-test-phase-unlocked'
-
-const passwordInput = ref('')
-const error = ref('')
-const unlocked = ref(localStorage.getItem(STORAGE_KEY) === '1')
-
-function submit() {
-  if (passwordInput.value.trim() === TEST_PHASE_PASSWORD) {
-    unlocked.value = true
-    error.value = ''
-    localStorage.setItem(STORAGE_KEY, '1')
-  } else {
-    error.value = 'Incorrect password. Please try again.'
-  }
-}
+import { TEST_PHASE_DATA } from '@/features/test-phase/data'
 </script>
 
 <template>
@@ -62,26 +41,12 @@ function submit() {
         </ul>
       </section>
 
-      <section v-if="!unlocked" class="test-phase__gate">
+      <section>
         <h2 class="test-phase__heading">Get the build</h2>
-        <p class="test-phase__lede">Enter the tester password to unlock the download links.</p>
-        <form class="test-phase__form" @submit.prevent="submit">
-          <input
-            v-model="passwordInput"
-            type="password"
-            placeholder="Tester password"
-            class="test-phase__input"
-          />
-          <button type="submit" class="test-phase__download">Unlock</button>
-        </form>
-        <p v-if="error" class="test-phase__error">{{ error }}</p>
-      </section>
-
-      <section v-else class="test-phase__downloads">
-        <h2 class="test-phase__heading">Get the build</h2>
-        <div class="test-phase__grid">
-          <DownloadCard v-for="d in downloads" :key="d.os" :download="d" />
-        </div>
+        <p class="test-phase__lede">
+          Downloads live on the main site — you'll need the tester password there too.
+        </p>
+        <a class="test-phase__download" href="./#testers">Go to downloads &rarr;</a>
       </section>
     </div>
   </main>
@@ -170,30 +135,7 @@ function submit() {
   border: 1px solid rgb(255 120 120 / .25);
 }
 
-.test-phase__form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.test-phase__input {
-  flex: 1;
-  padding: 12px 16px;
-  border-radius: var(--radius-md);
-  background: rgb(255 255 255 / .05);
-  border: 1px solid rgb(255 255 255 / .14);
-  color: var(--ink-on-night);
-  font-size: var(--text-sm);
-}
-
-.test-phase__error {
-  font-size: var(--text-sm);
-  color: #ff8a8a;
-  margin: 0;
-}
-
-.test-phase__download,
-.test-phase__form button {
+.test-phase__download {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -205,28 +147,12 @@ function submit() {
   font-size: var(--text-sm);
   font-weight: var(--fw-medium);
   cursor: pointer;
+  text-decoration: none;
   transition: background-color .15s ease;
 }
 
-.test-phase__download:hover,
-.test-phase__form button:hover {
+.test-phase__download:hover {
   background: rgb(30 144 255 / .2);
   border-color: rgb(126 200 255 / .4);
-}
-
-.test-phase__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  background: rgb(126 200 255 / .14);
-  border: 1px solid rgb(126 200 255 / .18);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-}
-
-@media (max-width: 900px) {
-  .test-phase__grid {
-    grid-template-columns: 1fr;
-  }
 }
 </style>

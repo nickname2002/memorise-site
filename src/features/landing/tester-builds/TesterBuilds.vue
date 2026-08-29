@@ -1,13 +1,27 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import Starfield from '@/libs/ui/Starfield/Starfield.vue'
 import DownloadCard from './DownloadCard.vue'
 import { LANDING_DATA } from '@/features/landing/data'
 import { useReleaseDownloads } from '@/libs/useLatestRelease'
+import { useTestPhaseGate } from '@/libs/useTestPhaseGate'
 
 const emit = defineEmits<{ toast: [message: string] }>()
 
 const downloads = useReleaseDownloads()
 const rel = LANDING_DATA.release
+
+const { unlocked, unlock } = useTestPhaseGate()
+const passwordInput = ref('')
+const error = ref('')
+
+function submit() {
+  if (unlock(passwordInput.value)) {
+    error.value = ''
+  } else {
+    error.value = 'Incorrect password. Please try again.'
+  }
+}
 </script>
 
 <template>
@@ -40,6 +54,27 @@ const rel = LANDING_DATA.release
                 @toast="emit('toast', $event)"
               />
             </div>
+
+            <template v-if="!unlocked">
+              <div class="release__divider"></div>
+              <div class="release__gate">
+                <h3 class="release__gate-title">Unlock downloads</h3>
+                <p class="release__gate-text">
+                  Memorise is currently in a closed beta. Enter the tester password you were
+                  given to unlock the download links above.
+                </p>
+                <form class="release__gate-form" @submit.prevent="submit">
+                  <input
+                    v-model="passwordInput"
+                    type="password"
+                    placeholder="Tester password"
+                    class="release__gate-input"
+                  />
+                  <button type="submit" class="release__gate-btn">Unlock</button>
+                </form>
+                <p v-if="error" class="release__gate-error">{{ error }}</p>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -144,5 +179,68 @@ const rel = LANDING_DATA.release
   .release__dl {
     grid-template-columns: 1fr;
   }
+}
+
+.release__divider {
+  height: 1px;
+  background: rgb(126 200 255 / .14);
+}
+
+.release__gate {
+  padding: 26px 30px;
+}
+
+.release__gate-title {
+  font-size: var(--text-base);
+  font-weight: var(--fw-semibold);
+  color: var(--ink-on-night);
+  margin: 0 0 8px;
+}
+
+.release__gate-text {
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--ink-on-night-faint);
+  margin: 0 0 16px;
+  max-width: 480px;
+}
+
+.release__gate-form {
+  display: flex;
+  gap: 10px;
+  max-width: 380px;
+}
+
+.release__gate-input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: rgb(255 255 255 / .05);
+  border: 1px solid rgb(255 255 255 / .14);
+  color: var(--ink-on-night);
+  font-size: var(--text-sm);
+}
+
+.release__gate-btn {
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  background: rgb(255 255 255 / .07);
+  border: 1px solid rgb(255 255 255 / .14);
+  color: var(--ink-on-night);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition: background-color .15s ease;
+}
+
+.release__gate-btn:hover {
+  background: rgb(30 144 255 / .2);
+  border-color: rgb(126 200 255 / .4);
+}
+
+.release__gate-error {
+  margin: 10px 0 0;
+  font-size: var(--text-sm);
+  color: #ff8a8a;
 }
 </style>

@@ -1,7 +1,8 @@
-// EDIT ME: shared password for testers. This ends up readable in the built
-// JS bundle — it's a casual deterrent for this first test phase, not real
-// access control. Don't hash it or add lockout logic; that would be
-// over-engineering something that's fundamentally client-side.
+// EDIT ME: shared password for testers, gating every real download button
+// on the site (landing page, macos-install page). This ends up readable in
+// the built JS bundle — it's a casual deterrent for this first test phase,
+// not real access control. Don't hash it or add lockout logic; that would
+// be over-engineering something that's fundamentally client-side.
 export const TEST_PHASE_PASSWORD = 'REPLACE-ME'
 
 export type TestInstruction = {
