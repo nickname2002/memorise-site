@@ -18,17 +18,29 @@ export type KnownIssue = {
   severity?: 'minor' | 'major'
 }
 
+export type PrivacyPoint = {
+  title: string
+  body: string
+}
+
 export const TEST_PHASE_DATA = {
-  intro: 'Placeholder: a short paragraph explaining what this test phase is for and what feedback we want.',
+  intro: "Welcome to the first user test of Memorise. We're looking for real-world feedback: how the app fits into your daily note-taking, what's missing, and what breaks. Feature requests, bug reports, and general impressions are all welcome — we're also collecting error data via Sentry based on your usage.",
 
   instructions: [
-    { title: 'Placeholder step 1', body: 'Placeholder: describe what to do first.' },
-    { title: 'Placeholder step 2', body: 'Placeholder: describe what to do next.' },
-    { title: 'Placeholder step 3', body: 'Placeholder: describe how to report feedback and bugs.' },
+    { title: 'Download and install the build', body: 'Get the latest build from the link below and set it up on your device.' },
+    { title: 'Use Memorise as your daily notes app', body: 'Create, edit, and organize notes the way you normally would. Try syncing across devices if you use more than one.' },
+    { title: 'Report bugs and feedback', body: 'Use the "Report feedback" button in the bottom-left corner of the app to flag issues as they happen or share feature requests and general feedback.' },
   ] as TestInstruction[],
 
   knownIssues: [
-    { title: 'Placeholder issue 1', body: 'Placeholder: describe a known issue.', severity: 'minor' },
-    { title: 'Placeholder issue 2', body: 'Placeholder: describe another known issue.', severity: 'major' },
+    { title: 'App may rarely show a blank screen on startup', body: 'In rare cases, the app can show a blank window on launch. If this happens, try restarting your computer or reconnecting to the internet. A permanent fix is currently in development.' },
+    { title: 'Auto-update is not yet working', body: "In-app updates currently fail. Until this is fixed, you'll need to manually download and reinstall new builds. We'll notify testers when new versions are available." },
   ] as KnownIssue[],
+
+  privacyIntro: 'Your notes, your control. Memorise gives you two ways to store your notes:',
+
+  privacyPoints: [
+    { title: 'Local vault', body: 'Notes stay entirely on your device. We only ever see a hash of local vault content — never the actual notes.' },
+    { title: 'Cloud vault', body: 'Notes sync across your devices and are end-to-end encrypted by default, meaning only you can read them. This can be turned off if needed, but stays on by default.' },
+  ] as PrivacyPoint[],
 }

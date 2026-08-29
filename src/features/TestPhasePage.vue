@@ -42,6 +42,16 @@ import { TEST_PHASE_DATA } from '@/features/test-phase/data'
       </section>
 
       <section>
+        <h2 class="test-phase__heading">Privacy</h2>
+        <p class="test-phase__lede">{{ TEST_PHASE_DATA.privacyIntro }}</p>
+        <ul class="test-phase__list">
+          <li v-for="point in TEST_PHASE_DATA.privacyPoints" :key="point.title">
+            <strong>{{ point.title }}</strong> — {{ point.body }}
+          </li>
+        </ul>
+      </section>
+
+      <section>
         <h2 class="test-phase__heading">Get the build</h2>
         <p class="test-phase__lede">
           Downloads live on the main site — you'll need the tester password there too.
